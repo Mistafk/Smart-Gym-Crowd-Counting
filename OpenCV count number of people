@@ -1,0 +1,23 @@
+img = cv2.imread('/Users/furkankose/Desktop/people_count/PPC3.jpeg')
+
+img1 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
+
+plt.figure(figsize=(10,10))
+plt.axis("off")
+#plt.imshow(img1)
+
+#_______________________
+box, label, count = cv.detect_common_objects(img)
+people_count = 0
+for i in range(len(label)):
+    if label[i] == "person":
+        draw_bbox(img, [box[i]], [label[i]], 1)
+        people_count += 1
+
+output = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+plt.figure(figsize=(10,10))
+plt.axis("off")
+plt.imshow(output)
+plt.show()
+
+print("Number of people:", people_count)
